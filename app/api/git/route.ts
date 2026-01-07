@@ -17,10 +17,10 @@ query userProblemsSolved($username: String!) {
 
 
 export async function GET() {
-    const oneWeekAgo = new Date();
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+    const oneYearAgo = new Date();
+    oneYearAgo.setDate(oneYearAgo.getDate() - 365);
 
-    const response = await fetch(`https://api.github.com/search/commits?q=author:dellano54+author-date:%3E${oneWeekAgo.toISOString().split('T')[0]}&sort=author-date&order=desc`);
+    const response = await fetch(`https://api.github.com/search/commits?q=author:dellano54+author-date:%3E${oneYearAgo.toISOString().split('T')[0]}&sort=author-date&order=desc`);
     const data = await response.json();
 
     const leetcodeResponse = await fetch("https://leetcode.com/graphql", {

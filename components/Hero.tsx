@@ -158,7 +158,7 @@ export default function Hero() {
                                                 <span className="block font-display text-5xl font-bold text-slate-900 leading-none tracking-tighter">{gitCommits ?? "—"}</span>
                                                 <span className="text-blue-600 font-mono text-[10px] font-bold animate-pulse">▲</span>
                                             </div>
-                                            <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1 block">Commits / Wk</span>
+                                            <span className="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1 block">Commits last year</span>
                                         </div>
                                     </div>
                                     {/* Velocity Sparkline */}
