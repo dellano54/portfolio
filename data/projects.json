@@ -1,0 +1,29 @@
+[
+  {
+    "title": "MoE GPT",
+    "subtitle": "Neural Infrastructure",
+    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
+    "metric": "70% RAM Saved",
+    "description": "Optimized Mixture of Experts model architecture with factorized embeddings.",
+    "stack": ["PyTorch", "CUDA", "LLM Architecture"],
+    "link": "https://github.com/dellano54"
+  },
+  {
+    "title": "Matrix Kernels",
+    "subtitle": "HPC / Low Level",
+    "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=2070&auto=format&fit=crop",
+    "metric": "44x Speedup",
+    "description": "Custom AVX2/OpenMP matrix multiplication kernels for Intel Xeon CPUs.",
+    "stack": ["C++", "Assembly", "OpenMP"],
+    "link": "https://github.com/dellano54"
+  },
+  {
+    "title": "Wakey Edge",
+    "subtitle": "Embedded Systems",
+    "image": "https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=2070&auto=format&fit=crop",
+    "metric": "<100ms Latency",
+    "description": "Real-time wake‑word detection engine optimized for Raspberry Pi/Arm64.",
+    "stack": ["Embedded C", "TinyML", "Docker"],
+    "link": "https://github.com/dellano54"
+  }
+]

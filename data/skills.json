@@ -1,0 +1,50 @@
+[
+  { 
+    "category": "Core Engineering", 
+    "desc": "System-level logic & kernels. Building the bedrock of performance.",
+    "icon": "Terminal",
+    "techs": [
+        { "name": "Python", "type": "font", "value": "devicon-python-plain colored" },
+        { "name": "C++", "type": "font", "value": "devicon-cplusplus-plain colored" },
+        { "name": "Rust", "type": "font", "value": "devicon-rust-plain text-white" }, 
+        { "name": "Go", "type": "font", "value": "devicon-go-original-wordmark colored" },
+        { "name": "Bash", "type": "font", "value": "devicon-bash-plain text-white" },
+        { "name": "Linux Kernel", "type": "font", "value": "devicon-linux-plain text-white" }
+    ]
+  },
+  { 
+    "category": "AI & Research", 
+    "desc": "Next-gen neural architectures. Pushing the boundaries of machine intelligence.",
+    "icon": "Cpu",
+    "techs": [
+        { "name": "PyTorch", "type": "font", "value": "devicon-pytorch-original colored" },
+        { "name": "TensorFlow", "type": "font", "value": "devicon-tensorflow-original colored" },
+        { "name": "HuggingFace", "type": "lucide", "value": "Mic", "color": "text-yellow-500" },
+        { "name": "OpenCV", "type": "font", "value": "devicon-opencv-plain colored" },
+        { "name": "CUDA", "type": "font", "value": "devicon-cuda-plain text-white" }
+    ]
+  },
+  { 
+    "category": "Cloud Infrastructure", 
+    "desc": "Scalable global deployment. Orchestrating massive distributed systems.",
+    "icon": "Globe",
+    "techs": [
+        { "name": "Docker", "type": "font", "value": "devicon-docker-plain colored" },
+        { "name": "Kubernetes", "type": "font", "value": "devicon-kubernetes-plain colored" },
+        { "name": "AWS", "type": "font", "value": "devicon-amazonwebservices-original colored" },
+        { "name": "Terraform", "type": "font", "value": "devicon-terraform-plain colored" },
+        { "name": "CI/CD", "type": "lucide", "value": "Workflow", "color": "text-blue-500" }
+    ]
+  },
+  { 
+    "category": "Edge & Embedded", 
+    "desc": "Constrained hardware compute. Optimizing for the edge.",
+    "icon": "Laptop",
+    "techs": [
+        { "name": "Raspberry Pi", "type": "font", "value": "devicon-raspberrypi-line colored" },
+        { "name": "Arduino", "type": "font", "value": "devicon-arduino-plain colored" },
+        { "name": "ESP32", "type": "lucide", "value": "Zap", "color": "text-orange-500" },
+        { "name": "RTOS", "type": "lucide", "value": "Activity", "color": "text-emerald-500" }
+    ]
+  }
+]

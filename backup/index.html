@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dellano S. Fernandez | Systems Architect</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ICONS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#050505',
+                        tungsten: '#111111',
+                        steel: '#1F1F1F',
+                        silver: '#E0E0E0',
+                        neon: '#00ff9d', 
+                    },
+                    fontFamily: {
+                        sans: ['Inter Tight', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'morph': 'morph 15s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        morph: {
+                            '0%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+                            '50%': { borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%' },
+                            '100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- CORE --- */
+        body {
+            background-color: #050505;
+            color: #E0E0E0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND MORPH ORB --- */
+        .morph-bg {
+            position: fixed; top: 20%; left: 50%; transform: translateX(-50%);
+            width: 60vw; height: 60vw;
+            background: radial-gradient(circle at center, rgba(0, 255, 157, 0.08), transparent 70%);
+            filter: blur(80px);
+            z-index: -1;
+            animation: morph 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* --- GRID TEXTURE --- */
+        .grid-bg {
+            position: fixed; inset: 0; z-index: -2;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            opacity: 0.4;
+        }
+
+        /* --- TYPOGRAPHY FX --- */
+        .scramble-text {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            min-width: 1ch;
+        }
+        
+        .text-metal {
+            background: linear-gradient(180deg, #ffffff 10%, #737373 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
+        }
+
+        /* --- GLASS COMPONENTS --- */
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+        .glass-panel:hover {
+            border-color: rgba(0, 255, 157, 0.3);
+            background: rgba(25, 25, 25, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px -10px rgba(0,0,0,0.8);
+        }
+
+        /* --- SKILL MATRIX (The Fix) --- */
+        .skill-matrix-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+        @media (min-width: 768px) {
+            .skill-matrix-row { grid-template-columns: 200px 1fr; }
+        }
+        .skill-matrix-row:hover {
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+            border-top-color: rgba(255,255,255,0.2);
+        }
+
+        /* --- TECH PILLS (Glass Chips) --- */
+        .tech-chip {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #ccc;
+            transition: all 0.2s ease;
+        }
+        .tech-chip:hover {
+            background: rgba(0, 255, 157, 0.05);
+            border-color: rgba(0, 255, 157, 0.4);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 157, 0.1);
+        }
+        .tech-chip i { transition: transform 0.2s; }
+        .tech-chip:hover i { transform: scale(1.1); }
+
+        /* --- PROJECT TELEMETRY --- */
+        .telemetry-strip {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.3);
+        }
+        .telemetry-item {
+            padding: 1rem;
+            border-right: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.3s;
+        }
+        .telemetry-item:last-child { border-right: none; }
+        .group:hover .telemetry-item { background: rgba(0, 255, 157, 0.02); }
+
+        /* --- NAV --- */
+        .nav-link { 
+            position: relative; color: #888; transition: color 0.3s;
+            text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; 
+        }
+        .nav-link:hover { color: #fff; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 1px;
+            background: #00ff9d; transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* --- SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+        /* --- ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(30px); }
+
+    </style>
+</head>
+<body class="loading selection:bg-neon/20 selection:text-white">
+
+    <div class="morph-bg"></div>
+    <div class="grid-bg"></div>
+
+    <!-- NAV -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center backdrop-blur-xl bg-void/80 border-b border-white/5">
+        <a href="#" class="font-display font-bold text-xl tracking-tighter text-white hover:text-neon transition-colors">
+            DSF.
+        </a>
+        
+        <div class="hidden md:flex gap-12 font-mono">
+            <a href="#about" class="nav-link">Bio</a>
+            <a href="#stack" class="nav-link">Skills</a>
+            <a href="#work" class="nav-link">Work</a>
+        </div>
+        
+        <a href="#contact" class="hidden md:block px-5 py-2 border border-white/10 rounded-sm font-mono text-[10px] uppercase tracking-widest hover:bg-neon hover:text-black hover:border-neon transition-all cursor-pointer text-silver hover:shadow-[0_0_20px_rgba(0,255,157,0.4)]">
+            Initialize
+        </a>
+    </nav>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section id="about" class="min-h-screen flex flex-col justify-center px-6 md:px-24 relative">
+            <div class="max-w-7xl mx-auto w-full pt-20">
+                
+                <!-- Status Badge -->
+                <div class="mb-16 reveal">
+                    <div class="inline-flex items-center gap-3 px-4 py-2 border border-white/10 rounded-sm bg-tungsten/50 backdrop-blur-md">
+                        <div class="w-1.5 h-1.5 bg-neon rounded-full animate-pulse shadow-[0_0_8px_#00ff9d]"></div>
+                        <span class="font-mono text-[10px] text-silver uppercase tracking-widest">System Online</span>
+                    </div>
+                </div>
+
+                <!-- NAME (DECODER EFFECT) -->
+                <div class="mb-20">
+                    <h1 class="font-display font-bold leading-[0.85] tracking-tighter">
+                        <!-- ID for JS targeting -->
+                        <span class="block text-[12vw] md:text-[9rem] text-metal scramble-target" data-value="DELLANO">DELLANO</span>
+                    </h1>
+                    <div class="flex flex-col md:flex-row gap-4 mt-2 md:mt-4">
+                        <span class="font-display font-bold text-[5vw] md:text-[3.5rem] text-white/90 leading-none tracking-tight scramble-target" data-value="SAMUEL">SAMUEL</span>
+                        <span class="font-display font-bold text-[5vw] md:text-[3.5rem] text-white/40 leading-none tracking-tight scramble-target" data-value="FERNANDEZ">FERNANDEZ</span>
+                    </div>
+                </div>
+
+                <!-- INTRO -->
+                <div class="grid md:grid-cols-12 gap-16 border-t border-white/10 pt-12 reveal delay-200">
+                    <div class="md:col-span-8">
+                        <h2 class="text-xl text-white mb-6 font-medium tracking-wide">Architecting Performance.</h2>
+                        <div class="space-y-6 text-mercury font-light text-lg leading-relaxed max-w-2xl">
+                            <p>
+                                I am a <strong class="text-neon font-normal">B.Tech IT Undergraduate</strong> and Systems Researcher. I specialize in the intersection of High-Performance Computing and Modern Web Architecture.
+                            </p>
+                            <p>
+                                While others rely on abstractions, I engineer the infrastructure. From <strong class="text-white">Full Stack Web Development</strong> to optimizing <strong class="text-white">AI Kernels</strong>, my work is defined by precision and scale.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="md:col-span-4 flex items-end justify-start md:justify-end">
+                        <div class="w-full max-w-xs bg-tungsten/80 border border-white/10 rounded-sm overflow-hidden backdrop-blur-md">
+                            <div class="grid grid-cols-2">
+                                <div class="p-6 text-center border-r border-white/10 border-b border-white/10">
+                                    <span class="block font-display text-4xl text-neon">44x</span>
+                                    <span class="block font-mono text-[9px] text-mercury uppercase tracking-widest mt-2">Speedup</span>
+                                </div>
+                                <div class="p-6 text-center border-b border-white/10">
+                                    <span class="block font-display text-4xl text-neon">70%</span>
+                                    <span class="block font-mono text-[9px] text-mercury uppercase tracking-widest mt-2">Mem. Cut</span>
+                                </div>
+                                <div class="col-span-2 p-3 bg-black/40 text-center">
+                                    <span class="font-mono text-[10px] text-white/30 uppercase tracking-widest">Live Telemetry</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TECH STACK (MATRIX LAYOUT) -->
+        <section id="stack" class="py-32 px-6 md:px-24">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-end justify-between mb-20 reveal">
+                    <div>
+                        <span class="font-mono text-mercury text-xs uppercase tracking-widest">Registry v31.0</span>
+                        <h2 class="font-display text-4xl md:text-5xl text-white mt-4">Technical Skills</h2>
+                    </div>
+                    <div class="hidden md:block w-32 h-[1px] bg-white/20"></div>
+                </div>
+
+                <div class="space-y-2 reveal">
+                    
+                    <!-- ROW 1: SYSTEMS -->
+                    <div class="skill-matrix-row group">
+                        <div class="flex flex-col justify-center">
+                            <span class="font-mono text-xs text-neon mb-2">01</span>
+                            <h3 class="font-display text-xl text-white">Systems Core</h3>
+                            <p class="text-xs text-mercury mt-1">Low-Level Optimization</p>
+                        </div>
+                        <div class="flex flex-wrap gap-3 items-center">
+                            <div class="tech-chip">
+                                <i class="devicon-cplusplus-plain colored"></i>
+                                <span>C++</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-python-plain colored"></i>
+                                <span>Python</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-bash-plain text-white"></i>
+                                <span>Bash</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-linux-plain text-white"></i>
+                                <span>Linux</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-embeddedc-plain text-white"></i>
+                                <span>Embedded</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROW 2: WEB -->
+                    <div class="skill-matrix-row group">
+                        <div class="flex flex-col justify-center">
+                            <span class="font-mono text-xs text-neon mb-2">02</span>
+                            <h3 class="font-display text-xl text-white">Web Stack</h3>
+                            <p class="text-xs text-mercury mt-1">Full Stack Development</p>
+                        </div>
+                        <div class="flex flex-wrap gap-3 items-center">
+                            <div class="tech-chip">
+                                <i class="devicon-java-plain colored"></i>
+                                <span>Java</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-react-original colored"></i>
+                                <span>React</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-nodejs-plain colored"></i>
+                                <span>Node.js</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-mongodb-plain colored"></i>
+                                <span>MongoDB</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-postgresql-plain colored"></i>
+                                <span>Postgres</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROW 3: AI -->
+                    <div class="skill-matrix-row group">
+                        <div class="flex flex-col justify-center">
+                            <span class="font-mono text-xs text-neon mb-2">03</span>
+                            <h3 class="font-display text-xl text-white">AI Research</h3>
+                            <p class="text-xs text-mercury mt-1">Neural Architecture</p>
+                        </div>
+                        <div class="flex flex-wrap gap-3 items-center">
+                            <div class="tech-chip">
+                                <i class="devicon-pytorch-original colored"></i>
+                                <span>PyTorch</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-numpy-plain colored"></i>
+                                <span>NumPy</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-pandas-plain text-white"></i>
+                                <span>Pandas</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="lucide-braces w-4 h-4 text-white"></i>
+                                <span>Transformers</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROW 4: INFRA -->
+                    <div class="skill-matrix-row group">
+                        <div class="flex flex-col justify-center">
+                            <span class="font-mono text-xs text-neon mb-2">04</span>
+                            <h3 class="font-display text-xl text-white">Infrastructure</h3>
+                            <p class="text-xs text-mercury mt-1">DevOps & Cloud</p>
+                        </div>
+                        <div class="flex flex-wrap gap-3 items-center">
+                            <div class="tech-chip">
+                                <i class="devicon-docker-plain colored"></i>
+                                <span>Docker</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-amazonwebservices-plain-wordmark colored"></i>
+                                <span>AWS</span>
+                            </div>
+                            <div class="tech-chip">
+                                <i class="devicon-googlecloud-plain colored"></i>
+                                <span>GCP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="work" class="py-32 px-6 md:px-24 bg-white/[0.02]">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-20 reveal">
+                    <span class="font-mono text-mercury text-xs uppercase tracking-widest">03 // Engineering Logs</span>
+                    <h2 class="font-display text-4xl md:text-5xl text-white mt-4">Selected Work</h2>
+                </div>
+
+                <div class="space-y-12">
+
+                    <!-- P1 -->
+                    <div class="glass-panel rounded-sm overflow-hidden reveal group">
+                        <div class="p-8 md:p-12">
+                            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-6">
+                                <div>
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <h3 class="font-display text-3xl md:text-4xl text-white group-hover:text-neon transition-colors">MoE GPT Architecture</h3>
+                                        <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-mercury uppercase tracking-wider">AI Systems</span>
+                                    </div>
+                                    <p class="text-mercury font-light text-lg leading-relaxed max-w-2xl">
+                                        Optimized Large Language Model using Mixture of Experts (MoE). Implemented custom factorized embeddings and RMSNorm, 
+                                        achieving <strong class="text-white">60-70% memory reduction</strong>.
+                                    </p>
+                                    <div class="flex flex-wrap gap-4 mt-6">
+                                        <i class="devicon-pytorch-original colored text-2xl"></i>
+                                        <i class="devicon-python-plain colored text-2xl"></i>
+                                        <i class="devicon-amazonwebservices-plain-wordmark colored text-2xl"></i>
+                                    </div>
+                                </div>
+                                <a href="https://github.com/dellano54/MoE-fast-GPT" target="_blank" class="w-14 h-14 flex items-center justify-center rounded-full border border-white/10 hover:bg-neon hover:text-black hover:border-neon transition-all hover:scale-110 shadow-xl bg-black">
+                                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="telemetry-strip">
+                            <div class="telemetry-item">
+                                <span class="block text-[10px] font-mono text-mercury uppercase tracking-widest mb-1">Benchmark</span>
+                                <span class="block font-display text-2xl text-neon">4x Faster</span>
+                            </div>
+                            <div class="telemetry-item">
+                                <span class="block text-[10px] font-mono text-mercury uppercase tracking-widest mb-1">Efficiency</span>
+                                <span class="block font-display text-2xl text-neon">70% Mem</span>
+                            </div>
+                            <div class="telemetry-item">
+                                <span class="block text-[10px] font-mono text-mercury uppercase tracking-widest mb-1">Hardware</span>
+                                <span class="block font-display text-2xl text-white">2x T4 GPU</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- P2 -->
+                    <div class="glass-panel rounded-sm overflow-hidden reveal group">
+                        <div class="p-8 md:p-12">
+                            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-6">
+                                <div>
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <h3 class="font-display text-3xl md:text-4xl text-white group-hover:text-neon transition-colors">Extreme MatMul</h3>
+                                        <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-mercury uppercase tracking-wider">HPC</span>
+                                    </div>
+                                    <p class="text-mercury font-light text-lg leading-relaxed max-w-2xl">
+                                        Custom C++ matrix multiplication library. Features adaptive kernel switching (Loops vs AVX2 SIMD), 
+                                        outperforming standard NumPy implementations.
+                                    </p>
+                                    <div class="flex flex-wrap gap-4 mt-6">
+                                        <i class="devicon-cplusplus-plain colored text-2xl"></i>
+                                        <span class="text-xs font-mono border border-white/20 px-2 py-1 rounded text-white/60 self-center">AVX2</span>
+                                    </div>
+                                </div>
+                                <a href="https://github.com/dellano54/extreme-matmul" target="_blank" class="w-14 h-14 flex items-center justify-center rounded-full border border-white/10 hover:bg-neon hover:text-black hover:border-neon transition-all hover:scale-110 shadow-xl bg-black">
+                                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="telemetry-strip">
+                            <div class="telemetry-item">
+                                <span class="block text-[10px] font-mono text-mercury uppercase tracking-widest mb-1">Performance</span>
+                                <span class="block font-display text-2xl text-neon">44x vs NumPy</span>
+                            </div>
+                            <div class="telemetry-item">
+                                <span class="block text-[10px] font-mono text-mercury uppercase tracking-widest mb-1">Optimization</span>
+                                <span class="block font-display text-2xl text-neon">L1/L2</span>
+                            </div>
+                            <div class="telemetry-item">
+                                <span class="block text-[10px] font-mono text-mercury uppercase tracking-widest mb-1">Logic</span>
+                                <span class="block font-display text-2xl text-white">Adaptive</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- P3 -->
+                    <div class="glass-panel rounded-sm overflow-hidden reveal group">
+                        <div class="p-8 md:p-12">
+                            <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-6">
+                                <div>
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <h3 class="font-display text-3xl md:text-4xl text-white group-hover:text-neon transition-colors">Wakey Edge AI</h3>
+                                        <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-mercury uppercase tracking-wider">IoT</span>
+                                    </div>
+                                    <p class="text-mercury font-light text-lg leading-relaxed max-w-2xl">
+                                        Real-time wake-word detection optimized for Arm64 (Raspberry Pi). 
+                                        Utilizes a lightweight CNN and MFCC audio features, containerized in Docker.
+                                    </p>
+                                    <div class="flex flex-wrap gap-4 mt-6">
+                                        <i class="devicon-python-plain colored text-2xl"></i>
+                                        <i class="devicon-docker-plain colored text-2xl"></i>
+                                        <i class="devicon-linux-plain text-white text-2xl"></i>
+                                    </div>
+                                </div>
+                                <a href="https://github.com/dellano54/wakeword-detection-pytorch" target="_blank" class="w-14 h-14 flex items-center justify-center rounded-full border border-white/10 hover:bg-neon hover:text-black hover:border-neon transition-all hover:scale-110 shadow-xl bg-black">
+                                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="telemetry-strip">
+                            <div class="telemetry-item">
+                                <span class="block text-[10px] font-mono text-mercury uppercase tracking-widest mb-1">Latency</span>
+                                <span class="block font-display text-2xl text-neon">&lt;100ms</span>
+                            </div>
+                            <div class="telemetry-item">
+                                <span class="block text-[10px] font-mono text-mercury uppercase tracking-widest mb-1">Architecture</span>
+                                <span class="block font-display text-2xl text-neon">Arm64</span>
+                            </div>
+                            <div class="telemetry-item">
+                                <span class="block text-[10px] font-mono text-mercury uppercase tracking-widest mb-1">Feature</span>
+                                <span class="block font-display text-2xl text-white">MFCC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <section id="contact" class="py-32 px-6 text-center border-t border-white/5 relative z-10">
+            <div class="max-w-2xl mx-auto reveal">
+                <span class="font-mono text-mercury text-xs uppercase tracking-widest mb-6 block">Ready to Deploy?</span>
+                <h2 class="font-display text-5xl md:text-7xl text-white mb-12">Let's Engineer.</h2>
+                
+                <a href="mailto:dellanosamuelfernandez@gmail.com" class="px-10 py-4 border border-white/10 rounded font-mono text-sm text-white hover:bg-neon hover:text-black hover:border-neon transition-colors tracking-widest uppercase inline-block mb-12 shadow-lg cursor-pointer">
+                    Initialize Connection
+                </a>
+                
+                <div class="flex justify-center gap-12 mt-8">
+                    <a href="https://github.com/dellano54" target="_blank" class="flex items-center gap-2 text-mercury hover:text-white transition-colors text-xs font-mono uppercase tracking-widest">
+                        <i class="devicon-github-original text-lg"></i> Github
+                    </a>
+                    <a href="#" class="flex items-center gap-2 text-mercury hover:text-white transition-colors text-xs font-mono uppercase tracking-widest">
+                        <i class="devicon-linkedin-plain text-lg"></i> LinkedIn
+                    </a>
+                </div>
+                
+                <div class="mt-24 text-white/20 text-[10px] font-mono uppercase tracking-widest">
+                    © 2025 Dellano Samuel Fernandez
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- TEXT SCRAMBLE / DECODER EFFECT ---
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.chars[Math.floor(Math.random() * this.chars.length)];
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="text-neon">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+        }
+
+        // --- INIT ANIMATIONS ---
+        window.addEventListener('load', () => {
+            // 1. Scramble Name
+            const targets = document.querySelectorAll('.scramble-target');
+            targets.forEach(el => {
+                const fx = new TextScramble(el);
+                fx.setText(el.getAttribute('data-value'));
+            });
+
+            // 2. Reveal Content
+            gsap.to('.reveal', {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                stagger: 0.1,
+                ease: "power3.out",
+                delay: 0.5
+            });
+        });
+
+        // --- SCROLL TRIGGERS ---
+        const revealElements = gsap.utils.toArray('.reveal');
+        revealElements.forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: 'top 85%',
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: "power3.out"
+            });
+        });
+
+        // --- SMOOTH SCROLL ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+    </script>
+</body>
+</html>

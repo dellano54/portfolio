@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --neon: #00ff9d;
+    --accent: #0066ff;
+  }
+
+  html, body {
+    @apply w-full overflow-x-hidden;
+  }
+
+  body {
+    @apply bg-white text-slate-900 antialiased;
+  }
+  
+  ::selection {
+    @apply bg-accent/10 text-accent;
+  }
+}
+
+@layer components {
+  /* Light Mode Text Effects */
+  .text-metal {
+    background: linear-gradient(180deg, #1e293b 10%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.1));
+  }
+  
+  /* Dark Mode Text Effects (for Skills section) */
+  .text-metal-dark {
+    background: linear-gradient(to bottom, #ffffff 30%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
+  }
+
+  .glass-panel {
+    @apply bg-white/60 backdrop-blur-md border border-slate-200 transition-all duration-300;
+  }
+  
+  .glass-panel-dark {
+    @apply bg-tungsten/40 backdrop-blur-md border border-white/5 transition-all duration-300;
+  }
+  
+  .tech-chip {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded font-mono text-sm text-slate-600 transition-all duration-200;
+  }
+  
+  .tech-chip-dark {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded font-mono text-sm text-silver transition-all duration-200;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0066ff;
+}

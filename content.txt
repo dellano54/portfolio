@@ -1,0 +1,28 @@
+DELLANO SAMUEL FERNANDEZ
+Chennai, Tamil Nadu | dellanosamuelfernandez@gmail.com | +917339078738 | github.com/dellano54
+  EXECUTIVE SUMMARY
+I'm a B.Tech IT student with hands-on experience in AI systems, performance optimization, and cloud deployment. I’ve independently built projects like efficient GPT models, fast matrix kernels, and real-time wakeword detection all optimized for limited hardware. Skilled in Linux, Docker, and AWS, I’m eager to contribute to real-world engineering teams and grow through impactful internship.
+  EDUCATION
+SRM Easwari Engineering College 						Ramapuram, Chennai
+COURSE: B.Tech, Information Technology, 1st Year
+CGPA: 8.5/10 (First 2 semester)
+ACTIVITES: research several AI training methods to reduce training time and improve domain accuracy.
+ TECHNICAL SKILLS
+Programming: Python, C/C++, Bash, Javascript, Java, React.
+AI & Machine Learning: Pytorch, Mixture of Experts, Attention & Transformer, Computer vision and audio
+Performance Optimization: SIMD, Cache Blocking, JIT,  Multi-Threading.
+Dev Ops: Linux, Docker, AWS, GCP, Github
+Tools & Frameworks: Numpy, SciPy, MKL, CUDA
+Embedded Architecture: Raspberry PI, AWS Graviton, Esp32, Arm low power Server and networking
+ EXPERIENCE AND PROJECTS
+MoE GPT   | python, pytorch, Transformers, cuda, AWS EC2, GPU processing | GitHub                          
+•	Designed a GPT-style language model using Mixture of Experts, where each expert uses only 20% of the full FFN size, factorized embedding, which enables the model for specialized learning
+•	Applied RMSNorm, factorized embedding layers, and weight sharing between input/output to significantly reduce model memory footprint.
+•	Achieved up to 4× faster training and 60–70% memory savings, completing GPT-3-small level training in 2 days on 2× T4, compared to 4 days on 8× A100.
+EXTREME MATMUL  | c/c++, numpy, python, Intel MKL, openMP, Cache Optimization | Github
+•	Built a custom matrix multiplication library with adaptive kernel switching: it avoids overhead on small matrices using lightweight unrolled loops, and applies SIMD kernels for large matrices.
+•	Achieved up to 44× speedup on small matrices and 4× speedup on large matrices over NumPy/MKL, with dynamic path selection for optimal performance.
+•	Optimized memory access and CPU utilization with manual alignment, OpenMP multi-threading, and SIMD (AVX2) vectorization, targeting Intel Xeon-class CPUs.
+WAKEY  | python, Arm64 optimization, low-power inference, CNN, MFCC Features, Docker  | Github 
+•	Built a lightweight CNN model for real-time wake‑word detection, optimized for edge deployment using audio MFCC features and low-latency inference.
+•	Deployed on edge hardware with under 100 ms response time, achieving high accuracy in diverse acoustic environments.
