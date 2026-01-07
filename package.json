@@ -39,12 +39,15 @@
     "@types/three": "^0.164.0",
     "autoprefixer": "^10.4.19",
     "eslint": "^8",
-    "eslint-config-next": "^16.1.1",
+    "eslint-config-next": "^14.2.0",
     "postcss": "^8",
     "typescript": "^5"
   },
   "overrides": {
     "react": "$react",
-    "react-dom": "$react-dom"
+    "react-dom": "$react-dom",
+    "@next/eslint-plugin-next": {
+      "glob": "^10.5.0"
+    }
   }
 }
