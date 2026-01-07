@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Background: Engineered Dark Void -->
+  <rect width="32" height="32" rx="8" fill="#030305" />
+  
+  <!-- Primary Structure: Neon 'D' -->
+  <path d="M9 7h6c4.5 0 8 3.5 8 9s-3.5 9-8 9H9V7z" fill="#00ff9d"/>
+  
+  <!-- Negative Space: Void Core -->
+  <path d="M14 12v10c1.5 0 3-2 3-5s-1.5-5-3-5z" fill="#030305"/>
+  
+  <!-- Accent System: Status Node (Blue) -->
+  <rect x="19" y="19" width="7" height="7" rx="2" fill="#0066ff" stroke="#030305" stroke-width="1.5" />
+</svg>

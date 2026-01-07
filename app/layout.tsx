@@ -53,6 +53,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Dellano Samuel Fernandez", url: "https://dellano.dev" }],
   creator: "Dellano Samuel Fernandez",
+  icons: {
+    icon: "/icon.svg",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
